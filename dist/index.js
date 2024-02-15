@@ -10,6 +10,12 @@ const indexroute_1 = __importDefault(require("./routes/indexroute"));
 const socket_io_1 = require("socket.io");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use('/', indexroute_1.default);
